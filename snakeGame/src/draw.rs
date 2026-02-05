@@ -1,5 +1,4 @@
 
-use piston_window::G2d;
 use piston_window::graphics::Context;
 use piston_window::graphics::types::Color;
 use crate::graphics::rectangle;
@@ -10,14 +9,18 @@ pub fn to_coord(game_coord:i32)->f64{
     (game_coord as f64) * BLOCK_SIZE
 }
 
-pub fn draw_block(color: Color, x:i32, y:i32, con:&Context, g: &mut G2d){
+pub fn to_coord_u32(game_coord:i32)-> u32{
+    game_coord.max(0) as u32
+}
+
+pub fn draw_block(color: Color, x:i32, y:i32, con:&Context, g: &mut piston_window::wgpu_graphics::WgpuGraphics){
     let gui_x = to_coord(x);
     let gui_y = to_coord(y);
 
     rectangle(color, [gui_x, gui_y, BLOCK_SIZE, BLOCK_SIZE], con.transform, g); 
 }
 
-pub fn draw_rectangle(color:Color, x:i32, y:i32, width:i32, height:i32, con:&Context, g: &mut G2d){
+pub fn draw_rectangle(color:Color, x:i32, y:i32, width:i32, height:i32, con:&Context, g: &mut piston_window::wgpu_graphics::WgpuGraphics){
     let x = to_coord(x);
     let y = to_coord(y);
 

@@ -1,10 +1,8 @@
 use std::collections::LinkedList;
 
-
-use piston_window::G2d;
 use piston_window::graphics::Context;
 use piston_window::graphics::types::Color;
-use rand::rand_core::block;
+
 
 use crate::draw::{draw_block};
 
@@ -54,7 +52,7 @@ impl Snake{
         Snake { direction: Direction::Right, body, tail: None } // when game is start then snake will move right direction 
     }
 
-    pub fn draw(&self, con:&Context, g:&mut G2d){
+    pub fn draw(&self, con:&Context, g: &mut piston_window::wgpu_graphics::WgpuGraphics){
         for block in &self.body{
             draw_block(SNAKE_COLOR, block.x, block.y, con, g);
         }
